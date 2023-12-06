@@ -190,8 +190,8 @@ input {
     right: 0;
     bottom: 0;
     margin: auto;
-    padding: 50px 25px;
-    gap: 20px;
+    padding: 20px 25px 50px 25px;
+    gap: 25px;
 }
 
 .order-row {
@@ -211,7 +211,14 @@ input {
     color: black;
 }
 
-.modal-close-btn:hover{
+.delete-btn{
+    background-color: transparent;
+    border: none;
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+.modal-close-btn:hover, .delete-btn:hover{
     background-color: lightgrey;
     cursor: pointer;
 }

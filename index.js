@@ -2,7 +2,7 @@ import { menuArray } from './data.js'
 import { renderModal } from './modal.js'
 import { renderOrderHistory } from './order-history.js'
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 let orderedItems = []
 
@@ -17,7 +17,7 @@ const ordersInDB = ref(database, "orders")
 
 onValue(ordersInDB, function(snapshot) {
     if (snapshot.exists()) {
-        let ordersArray = Object.entries(snapshot.val()).map(entry => entry[1])
+        let ordersArray = Object.entries(snapshot.val())
         console.log(ordersArray)
         renderOrderHistory(ordersArray)
     } else {
@@ -43,7 +43,7 @@ function renderMenu(){
                 </div>
                 <div class="description">
                     <h2>${menuItem.name}</h2>
-                    <p>${menuItem.ingredients.join(',')}</p>
+                    <p>${menuItem.ingredients.join(', ')}</p>
                     <h3>$${menuItem.price}</h3>
                 </div>
             </div>
@@ -128,6 +128,12 @@ function addEventListeners(){
     historyEl.addEventListener('click', function(e){
         if (e.target.dataset.close){
             historyEl.style.display = "none";
+        }
+
+        if (e.target.dataset.remove){
+            let itemId = e.target.dataset.remove
+            let exactLocationOfItemInDB = ref(database, `orders/${itemId}`)
+            remove(exactLocationOfItemInDB)
         }
     })
 
