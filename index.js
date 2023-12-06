@@ -1,11 +1,12 @@
 import { menuArray } from './data.js'
-
-// Create main menu
-renderMenu()
-addEventListeners()
+import { renderModal } from './modal.js'
 
 let orderedItems = []
 
+// Create main menu
+renderMenu()
+renderModal()
+addEventListeners()
 
 // render main menu
 function renderMenu(){
@@ -23,7 +24,7 @@ function renderMenu(){
                     <h3>$${menuItem.price}</h3>
                 </div>
             </div>
-            <button type="button" class="add-button" data-name="${menuItem.name}"> + </button>
+            <button type="button" class="add-button" data-addname="${menuItem.name}"> + </button>
         </div>`
     }).join('')
     menuEl.innerHTML = menuHtml
@@ -41,7 +42,7 @@ function renderCheckout(){
             <div class="row-item">
                 <div class="left">
                     <h2>${item.name}</h2>
-                    <button type="button" class="remove-button" data-name="${item.name}">remove</button>
+                    <button type="button" class="remove-button" data-removename="${item.name}">remove</button>
                 </div>
                 <h3>$${item.price}</h3>
             </div>`
@@ -52,42 +53,47 @@ function renderCheckout(){
             <h2>Total price:</h2>\
             <h3>$${orderedItems.reduce((total, currentItem) => total + currentItem.price, 0)}</h3>
         </div>
-        <button id="complete-button">Complete order</button>
+        <button id="complete-button" data-complete="true">Complete order</button>
         `
     }
 
     checkoutEl.innerHTML = checkoutHtml
-    addEventListeners()
 }
 
 function addEventListeners(){
-    const addButtons = document.getElementsByClassName('add-button')
-    const removeButtons = document.getElementsByClassName('remove-button')
-    const completeButton = document.getElementById('complete-button')
+    const menuEl = document.getElementById('menu')
+    const checkoutEl = document.getElementById('checkout')
+    const modalForm = document.getElementById('modal-form')
 
-    Array.from(addButtons).forEach(button => {
-        button.addEventListener('click', (e) => {
-            let item = menuArray.find(x => x.name === e.target.dataset.name)
+    menuEl.addEventListener('click', function(e){
+        if (e.target.dataset.addname){
+            let item = menuArray.find(x => x.name === e.target.dataset.addname)
             if (!orderedItems.includes(item)){
                 orderedItems.push(item)
                 renderCheckout()
             }
-        })
+        }
     })
 
-    Array.from(removeButtons).forEach(button => {
-        button.addEventListener('click', (e) => {
+    checkoutEl.addEventListener('click', function(e){
+        if (e.target.dataset.removename){
             let idx = orderedItems.findIndex(x => x.name === e.target.dataset.name)
             orderedItems.splice(idx, 1)
             renderCheckout()
-        })
+        }
+
+        if (e.target.dataset.complete){
+            const modalEl = document.getElementById('modal')
+            modalEl.style.display = "flex";
+        }
     })
 
-    if (completeButton){
-        completeButton.addEventListener('click', () => {
-            console.log('complete!')
-        })
-    }
+    modalForm.addEventListener('submit', function(e){
+        e.preventDefault()
+
+        const modalFormData = new FormData(modalForm)
+        console.log(`${modalFormData.get('name')} has paid!`)
+    })
 }
 
 

@@ -90,8 +90,52 @@ header {
     background-color: #16db99;
     border: none;
     border-radius: 3px;
-    margin-top: 50px;
+    margin: 50px 0;
     padding: 18px 175px;
+}
+
+/* card modal */
+.modal {
+    display: none;
+    flex-direction: column;
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    font-family:'Arimo';
+    padding: 50px 25px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.modal h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 475px;
+    padding: 15px 25px;
+    margin: 12px 0;
+}
+
+.pay-button {
+    width: 475px;
+    align-self: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    background-color: #16db99;
+    margin-top: 30px;
+    padding: 15px 210px;
 }
 
 /* Fonts */
