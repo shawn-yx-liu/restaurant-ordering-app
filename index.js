@@ -1,10 +1,33 @@
 import { menuArray } from './data.js'
 import { renderModal } from './modal.js'
+import { renderOrderHistory } from './order-history.js'
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 let orderedItems = []
 
+// set up database
+const appSettings = {
+    databaseURL: "https://playground-17d54-default-rtdb.firebaseio.com/"
+}
+
+const app = initializeApp(appSettings)
+const database = getDatabase(app)
+const ordersInDB = ref(database, "orders")
+
+onValue(ordersInDB, function(snapshot) {
+    if (snapshot.exists()) {
+        let ordersArray = Object.entries(snapshot.val()).map(entry => entry[1])
+        console.log(ordersArray)
+        renderOrderHistory(ordersArray)
+    } else {
+        document.getElementById('order-history').innerHTML = "No orders... yet"
+    }
+})
+
 // Create main menu
 renderMenu()
+renderCheckout()
 renderModal()
 addEventListeners()
 
@@ -55,6 +78,8 @@ function renderCheckout(){
         </div>
         <button id="complete-button" data-complete="true">Complete order</button>
         `
+    } else {
+        checkoutHtml = `<button type="button" class="history-button" data-history="true">Order History</button>`
     }
 
     checkoutEl.innerHTML = checkoutHtml
@@ -64,11 +89,14 @@ function renderConfirmation(name){
     document.getElementById('checkout').innerHTML = `
         <h1 class="confirmation">Thanks, ${name}! Your order is on its way!</h1>
     `;
+
+    setTimeout(() => renderCheckout(), 5000)
 }
 
 function addEventListeners(){
     const menuEl = document.getElementById('menu')
     const checkoutEl = document.getElementById('checkout')
+    const historyEl = document.getElementById('order-history')
     const modalForm = document.getElementById('modal-form')
 
     menuEl.addEventListener('click', function(e){
@@ -89,19 +117,33 @@ function addEventListeners(){
         }
 
         if (e.target.dataset.complete){
-            const modalEl = document.getElementById('modal')
-            modalEl.style.display = "flex";
+            document.getElementById('modal').style.display = "flex";
+        }
+
+        if (e.target.dataset.history){
+            historyEl.style.display = "flex";
+        }
+    })
+
+    historyEl.addEventListener('click', function(e){
+        if (e.target.dataset.close){
+            historyEl.style.display = "none";
         }
     })
 
     modalForm.addEventListener('submit', function(e){
         e.preventDefault()
-
-        const modalEl = document.getElementById('modal')
-        modalEl.style.display = "none";
+        document.getElementById('modal').style.display = "none";
         const modalFormData = new FormData(modalForm)
+
+        const order = {
+            items: orderedItems,
+            name: modalFormData.get('name'),
+        }
+        push(ordersInDB, order)
         renderConfirmation(modalFormData.get('name'))
         orderedItems = []
+        modalForm.reset()
     })
 }
 

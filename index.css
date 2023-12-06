@@ -59,6 +59,22 @@ header {
     text-align: center;
 }
 
+.history-button {
+    width: 500px;
+    align-self: center;
+    color: white;
+    font-size: 25px;
+    background-color: #16db99;
+    border: none;
+    border-radius: 3px;
+    margin: 50px 0;
+    padding: 18px 175px;
+}
+
+.history-button:hover {
+    cursor: pointer;
+}
+
 .row-item {
     display: flex;
     justify-content: space-between;
@@ -78,6 +94,7 @@ header {
 
 .remove-button:hover {
     background-color: #bbbbbb;
+    cursor: pointer;
 }
 
 #total-row {
@@ -93,6 +110,10 @@ header {
     border-radius: 3px;
     margin: 50px 0;
     padding: 18px 175px;
+}
+
+#complete-button:hover {
+    cursor: pointer;
 }
 
 .confirmation {
@@ -148,6 +169,51 @@ input {
     background-color: #16db99;
     margin-top: 30px;
     padding: 15px 210px;
+}
+
+.pay-button:hover {
+    cursor: pointer;
+}
+
+/* Order History Modal */
+.order-history {
+    display: none;
+    width: 500px;
+    height: 400px;
+    flex-direction: column;
+    border: 1px solid black;
+    background-color: lightyellow;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    padding: 50px 25px;
+    gap: 20px;
+}
+
+.order-row {
+    display: flex;
+    cursor: default;
+}
+
+.close-modal-btn-container {
+    display: flex;
+    justify-content: end;
+}
+
+.modal-close-btn {
+    font-size: 25px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: black;
+}
+
+.modal-close-btn:hover{
+    background-color: lightgrey;
+    cursor: pointer;
 }
 
 /* Fonts */
