@@ -60,6 +60,12 @@ function renderCheckout(){
     checkoutEl.innerHTML = checkoutHtml
 }
 
+function renderConfirmation(name){
+    document.getElementById('checkout').innerHTML = `
+        <h1 class="confirmation">Thanks, ${name}! Your order is on its way!</h1>
+    `;
+}
+
 function addEventListeners(){
     const menuEl = document.getElementById('menu')
     const checkoutEl = document.getElementById('checkout')
@@ -91,8 +97,11 @@ function addEventListeners(){
     modalForm.addEventListener('submit', function(e){
         e.preventDefault()
 
+        const modalEl = document.getElementById('modal')
+        modalEl.style.display = "none";
         const modalFormData = new FormData(modalForm)
-        console.log(`${modalFormData.get('name')} has paid!`)
+        renderConfirmation(modalFormData.get('name'))
+        orderedItems = []
     })
 }
 

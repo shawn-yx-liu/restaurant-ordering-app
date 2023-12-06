@@ -94,6 +94,17 @@ header {
     padding: 18px 175px;
 }
 
+.confirmation {
+    width: 380px;
+    font-size: 32px;
+    color: #065f46;
+    background-color: #ecfdf5;
+    padding: 50px 60px;
+    align-self: center;
+    border-radius: 3px;
+    margin-bottom: 30px;
+}
+
 /* card modal */
 .modal {
     display: none;
