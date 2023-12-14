@@ -1,21 +1,34 @@
-# co72e499baf5f48346e5975cf
+# User Dashboard
+The restaurant ordering app is a web app that allows multiple users to update a shared shopping list. I created this project as a way to practice my JavaScript and Firebase skills.  
 
-Quick start:
+## Getting Started
+### Build and Run the extension:
 
 ```
 $ npm install
 $ npm start
 ````
 
-Head over to https://vitejs.dev/ to learn more about using vite
-## About Scrimba
+# Add the app to your phone
+## On iOS
+* In Safari, navigate to [https://add-to-cart-shawnliu.netlify.app/](https://add-to-cart-shawnliu.netlify.app/).
+* Tap the "Share" icon in the bottom toolbar and tap "Add to Home Screen."
+* Set a new display name for the app if desired.
+* Click "Add" to add the web app to your home screen!
 
-At Scrimba our goal is to create the best possible coding school at the cost of a gym membership! 💜
-If we succeed with this, it will give anyone who wants to become a software developer a realistic shot at succeeding, regardless of where they live and the size of their wallets 🎉
-The Frontend Developer Career Path aims to teach you everything you need to become a Junior Developer, or you could take a deep-dive with one of our advanced courses 🚀
+## On Android
+* In Google Chrome, navigate to [https://add-to-cart-shawnliu.netlify.app/](https://add-to-cart-shawnliu.netlify.app/).
+* Tap the three dots in the upper right corner and tap "Add to Home Screen."
+* Set a new display name for the app if desired.
+* Click "Add" to add the web app to your home screen!
 
-- [Our courses](https://scrimba.com/allcourses)
-- [The Frontend Career Path](https://scrimba.com/learn/frontend)
-- [Become a Scrimba Pro member](https://scrimba.com/pricing)
+# Usage
+* Navigate to [https://add-to-cart-shawnliu.netlify.app/](https://add-to-cart-shawnliu.netlify.app/) on a browser or by opening the app.
+* Type an item in the text box and click "Add to cart" to add it to the shopping list.
+* Tap an item in the shopping list to remove it.
 
-Happy Coding!
+# Authors
+* [Shawn Liu](https://github.com/shawn8913)
+
+# Acknowledgements:
+* [Scrimba Frontend Career Path](https://scrimba.com/learn/frontend)
