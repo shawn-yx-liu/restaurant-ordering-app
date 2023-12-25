@@ -1,5 +1,5 @@
 # Restaurant Ordering App
-The restaurant ordering app is a web app that allows multiple users to update a shared shopping list. I created this project as a way to practice my JavaScript and Firebase skills.  
+The [restaurant ordering app](https://add-to-cart-shawnliu.netlify.app/) is a web app that allows multiple users to update a shared shopping list. I created this project as a way to practice my JavaScript and Firebase skills.  
 
 ### Built With
 [![Javascript][Javascript.js]][Javascript-url]\
